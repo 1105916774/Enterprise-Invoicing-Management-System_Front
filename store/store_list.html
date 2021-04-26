@@ -1,0 +1,151 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<!-- 后端实现：
+1.在表格左下方，显示：共xx条记录，当前第xx页，共xx页 
+2.在表格右下方，做页码（首页，上一页，下一页，尾页） -->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>库房管理</title>
+	<style>
+		body{margin: 0;}
+		/* 分页面导航 */
+		.x-nav{
+			padding: 0 20px;
+			position: relative;
+			z-index: 99;
+			border-bottom: 1px solid #e5e5e5;
+			line-height: 43px;
+			height: 43px;
+			overflow: hidden;
+			background: #f9f9f9;
+		}
+		.navigate{
+			font-size:15px;
+		}
+		.navigate a{
+			padding-right:3px;
+			line-height:22px;
+			font-size:14px;
+			color:rgb(82, 81, 81)
+		}
+		.navigate a span{
+			padding-left:8px;
+		}
+
+		.tools {
+			clear: both;
+			height: 35px;
+			margin-bottom: 15px;
+		}
+		.add_button{
+			background-color: #2468A9;
+			border: 0px;
+			color: white;
+			outline:none;
+			border-radius: 3px;
+			width: 50px;
+			height: 30px;
+		}
+
+		.aaa {
+			border: solid 1px #e8e8e8;
+			width: 100%;
+			clear: both;
+		}
+		.aaa th {
+			background-color: #f0f5f7;
+			height: 34px;
+			line-height: 34px;
+			/* border-bottom: solid 1px #b6cad2; */
+			border: solid 1px #e8e8e8;
+			text-indent: 11px;
+			text-align: left;
+		}
+		.aaa td {
+			line-height: 35px;
+			text-indent: 11px;
+			/* border-right: dotted 1px #c7c7c7; */
+			border: solid 1px #e8e8e8;
+		}
+		.aaa tbody tr.odd {
+			background: #f0f5f7;
+		}
+		.aaa tbody tr:hover {
+			background: #f3f3f3;
+		}
+
+		/* 页码 */
+		/* <a>标签 */
+		.turnpage a{
+			text-decoration:none;
+			font-size: 15px;
+        }
+        .turnpage a:link{color:black;}
+        .turnpage a:visited{color:black;}
+		.turnpage a:hover{color:#189bd3;}
+	</style>
+</head>
+<body>
+<div class="x-nav">
+	<span class="navigate">
+		<a><cite>首页</cite></a>
+		<a><cite>></cite></a>
+		<a><cite>库存管理</cite></a>
+	</span>
+</div>
+
+<div style="padding: 20px;">
+	<table class="aaa" border='1'cellspacing="0" cellpadding="0" >
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>货品编号</th>
+				<th>货品名称</th>
+				<th>货品数量</th>
+				<th>单价</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td class="center">1</td>
+				<td class="center">0001</td>
+				<td class="center">铅笔</td>
+				<td class="center">100个</td>
+				<td class="center">5元</td>
+			</tr>
+
+			<tr>
+				<td class="center">2</td>
+				<td class="center">0002</td>
+				<td class="center">钢笔</td>
+				<td class="center">200个</td>
+				<td class="center">20元</td>
+			</tr>
+
+			<tr>
+				<td class="center">3</td>
+				<td class="center">0003</td>
+				<td class="center">橡皮</td>
+				<td class="center">150个</td>
+				<td class="center">2元</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- 页码 -->
+	<div class="turnpage" style="margin-top: 10px">
+		<span style="margin-right: 20px;">共3条记录，共1页，当前为第1页</span>
+		<div align="right" style="margin-top: -20px;margin-right: 5px">
+			<a href="#">首页</a>
+			<a href="#">上一页</a>
+			<a href="#">下一页</a>
+			<a href="#">尾页</a>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>

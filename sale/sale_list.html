@@ -1,0 +1,264 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>销售记录管理</title>
+
+<!-- 
+▲▲▲【后端实现】▲▲▲
+1.110-130行：入库（点击按钮改变颜色，文字改变）
+2.页码 
+-->
+
+	<style>
+		body{margin: 0;}
+		/* 分页面导航 */
+		.x-nav{
+			padding: 0 20px;
+			position: relative;
+			z-index: 99;
+			border-bottom: 1px solid #e5e5e5;
+			line-height: 43px;
+			height: 43px;
+			overflow: hidden;
+			background: #f9f9f9;
+		}
+		.navigate{
+			font-size:15px;
+		}
+		.navigate a{
+			padding-right:3px;
+			line-height:22px;
+			font-size:14px;
+			color:rgb(82, 81, 81)
+		}
+		.navigate a span{
+			padding-left:8px;
+		}
+
+		.tools {
+			clear: both;
+			height: 35px;
+			margin-bottom: 15px;
+		}
+		.add_button{
+			background-color: #2468A9;
+			border: 0px;
+			color: white;
+			outline:none;
+			border-radius: 3px;
+			width: 50px;
+			height: 30px;
+		}
+
+		.aaa {
+			border: solid 1px #e8e8e8;
+			width: 100%;
+			clear: both;
+		}
+		.aaa th {
+			background-color: #f0f5f7;
+			height: 34px;
+			line-height: 34px;
+			/*border-bottom: solid 1px #b6cad2;*/
+			border: solid 1px #e8e8e8;
+			text-indent: 11px;
+			text-align: left;
+		}
+		.aaa td {
+			line-height: 35px;
+			text-indent: 11px;
+			/*border-right: dotted 1px #c7c7c7;*/
+			border: solid 1px #e8e8e8;
+		}
+		.aaa tbody tr.odd {
+			background: #f5f8fa;
+		}
+		.aaa tbody tr:hover {
+			background: #f3f3f3;
+		}
+
+		/* 页码 */
+		/* <a>标签 */
+			.turnpage a{
+			text-decoration:none;
+			font-size: 15px;
+        }
+        .turnpage a:link{color:black;}
+        .turnpage a:visited{color:black;}
+		.turnpage a:hover{color:#189bd3;}
+
+		/* 入库按钮 */
+		.deliver_btn{
+			background-color: red;
+			border: 0px;
+			color: white;
+			outline:none;
+			border-radius: 3px;
+			width: 50px;
+			height: 30px;
+		}
+		/* 撤回按钮 */
+		.cancel_btn{
+			background-color: #2468A9;
+			border: 0px;
+			color: white;
+			outline:none;
+			border-radius: 3px;
+			height: 30px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		//▲▲▲【？代码有问题】发货（点击按钮改变颜色，改变文字）
+		function deliver_btn() {
+			var msg = "您确定要发货吗？";
+			if (confirm(msg)==true){
+				alert("发货成功!");
+				var deliver_btn=document.getElementById("deliver_btn");
+			　　if(deliver_btn.style.backgroundColor=="red"){
+					deliver_btn.style.backgroundColor='#2468A9';
+					deliver_btn.style.value='已发货'; //？代码有问题
+				}
+			　　else deliver_btn.style.backgroundColor='red';
+				return true;
+			}else{
+				return false;
+			}
+		}
+		//取消订单
+		function cancel_btn() {
+			if (confirm("您确定要取消订单吗?")) {
+				var visitPath = "paperinfo.do?action=delete&id=" + id;
+				location.href = visitPath
+			}
+			alert("取消成功!");
+		}
+	</script>
+
+	<!-- 消息框【框架】 -->
+	<script src="../css/layui/layui.js" charset="utf-8"></script>
+	<script src="../css/layui/x-layui.js" charset="utf-8"></script> 
+	<script>
+		layui.use(['laydate','element','laypage','layer'], function(){
+			$ = layui.jquery;//jquery
+			lement = layui.element();//面包导航
+			laypage = layui.laypage;//分页
+			layer = layui.layer;//弹出层
+		});
+
+		// 添加
+		function sale_add(title,url,w,h){
+			x_admin_show(title,url,w,h);
+		}
+
+		// // 查看
+		// function purchase_show(title,url,id,w,h){
+		// 	x_admin_show(title,url,w,h);
+		// }
+
+		// // 编辑
+		// function purchase_edit (title,url,id,w,h) {
+		// 	x_admin_show(title,url,w,h); 
+		// }
+		// // 密码修改
+		// function user_management_password(title,url,id,w,h){
+		// 	x_admin_show(title,url,w,h);  
+		// }
+	</script>
+</head>
+<body>
+<div class="x-nav">
+	<span class="navigate">
+		<a><cite>首页</cite></a>
+		<a><cite>></cite></a>
+		<a><cite>销售记录管理</cite></a>
+	</span>
+</div>
+
+<div style="padding: 20px;">
+	<div class="tools">
+		<button class="add_button" onclick="sale_add('添加销售记录','sale_add.html','600','500')">添加</button>
+	</div>
+
+	<table class="aaa" border='1'cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>销售单号</th>
+				<th>货品信息</th>
+				<th>客户商</th>
+				<th>数量</th>
+				<th>单价</th>
+				<th>总价</th>
+				<th>时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td class="center">1</td>
+				<td class="center">0001</td>
+				<td class="center">铅笔</td>
+				<td class="center">客户商A</td>
+				<td class="center">10个</td>
+				<td class="center">5元</td>
+				<td class="center">50元</td>
+				<td class="center">2021-04-25</td>
+				<td>
+					<input id="deliver_btn" class="deliver_btn" type="button" value="发货" onclick="deliver_btn()">
+					<input class="cancel_btn" type="button" value="取消订单" onclick="cancel_btn()">
+				</td>
+			</tr>
+
+			<tr>
+				<td class="center">2</td>
+				<td class="center">0002</td>
+				<td class="center">钢笔</td>
+				<td class="center">客户商B</td>
+				<td class="center">5个</td>
+				<td class="center">20元</td>
+				<td class="center">100元</td>
+				<td class="center">2021-04-26</td>
+				<td>
+					<input id="deliver_btn" class="deliver_btn" type="button" value="发货" onclick="deliver_btn()">
+					<input class="cancel_btn" type="button" value="取消订单" onclick="cancel_btn()">
+				</td>
+			</tr>
+
+			<tr>
+				<td class="center">3</td>
+				<td class="center">0003</td>
+				<td class="center">橡皮</td>
+				<td class="center">客户商C</td>
+				<td class="center">15个</td>
+				<td class="center">2元</td>
+				<td class="center">30元</td>
+				<td class="center">2021-04-27</td>
+				<td>
+					<input id="deliver_btn" class="deliver_btn" type="button" value="发货" onclick="deliver_btn()">
+					<input class="cancel_btn" type="button" value="取消订单" onclick="cancel_btn()">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- 页码 -->
+	<div class="turnpage" style="margin-top: 10px">
+		<span style="margin-right: 20px;">共3条记录，共1页，当前为第1页</span>
+		<div align="right" style="margin-top: -20px;margin-right: 5px">
+			<a href="#">首页</a>
+			<a href="#">上一页</a>
+			<a href="#">下一页</a>
+			<a href="#">尾页</a>
+		</div>
+	</div>
+
+</div>
+
+
+</body>
+</html>

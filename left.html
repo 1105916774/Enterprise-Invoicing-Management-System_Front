@@ -1,0 +1,142 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>left</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <style>
+        body{
+            margin: 0;
+        }
+
+        /* left页面 */
+        .left_box {
+            width: 180px;
+            height: 100%;
+            position: absolute;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+        .left_box dl {
+            margin: 0;
+        }
+        .left_box dt {
+            background-color: #f9f9f9;
+            color: #333;
+            font-size: 14px;
+            position: relative;
+            line-height: 44px;
+            border-bottom: 1px solid #dedede;
+            border-right: 1px solid #dedede;
+            padding-left: 30px;
+            cursor: pointer; /* 光标 */
+        }
+        .left_box dd { /* 二级菜单 */
+            display: none;
+            position: relative;
+            background-color: white;
+            padding-left: 65px;
+            border-bottom: 1px solid #dedede;
+            border-right: 1px solid #dedede;
+            margin:0;   
+        }
+        .left_box dd a {
+            color: #333;
+            line-height: 42px;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            cursor: pointer; /* 光标 */
+        }
+        .pulldown {
+            position: relative;
+            margin-top: 22px;
+            margin-right: 10px;
+        }
+        .left_box dd img.second_level {
+            position: absolute;
+            top: 0px;
+            left: 30px;
+        }
+
+        /* <a>标签 */
+        a{
+            text-decoration:none;
+            font-size: 15px;
+        }
+        a:link{color:black;}
+        a:visited{color:black;}
+    </style>
+
+    <script>
+        // 实现二级菜单的隐藏和显示
+        function purchase_showhidden(){
+        　　var dd_block1=document.getElementById("dd_block1");
+        　　var dd_block2=document.getElementById("dd_block2");
+        　　if(dd_block1.style.display=='block') dd_block1.style.display='none';
+        　　else dd_block1.style.display='block';
+        　　if(dd_block2.style.display=='block') dd_block2.style.display='none';
+        　　else dd_block2.style.display='block';
+    　　}
+        function sale_showhidden(){
+        　　var dd_block3=document.getElementById("dd_block3");
+        　　var dd_block4=document.getElementById("dd_block4");
+        　　if(dd_block3.style.display=='block') dd_block3.style.display='none';
+        　　else dd_block3.style.display='block';
+        　　if(dd_block4.style.display=='block') dd_block4.style.display='none';
+        　　else dd_block4.style.display='block';
+    　　}
+    </script>
+</head>
+
+<body style="width: 100%;overflow-x: hidden;overflow-y: hidden;margin-top: -2px">
+    <!-- 左侧导航栏 -->
+    <div class="left_box">
+        <!-- 1.库存管理 -->
+        <dt>
+            <a href="store/store_list.html" target="main">库存管理</a>
+        </dt>
+
+        <!-- 2.采购管理 -->
+        <dl>
+            <dt onclick="purchase_showhidden();">采购管理
+                <img align="right" class="pulldown" src="resource/pulldown.png" />
+            </dt>
+            <dd id="dd_block1">
+                <img id="dd_block1" class="second_level" src="resource/second_level.png" />
+                <a href="purchase/purchase_list.html" target="main" class="cks">采购记录管理</a>
+            </dd>
+            <dd id="dd_block2">
+                <img id="dd_block2" class="second_level" src="resource/second_level.png" />
+                <a href="purchase/supplier_list.html" target="main">供应商</a>
+            </dd>
+        </dl>
+
+        <!-- 3.销售管理 -->
+        <dl>
+            <dt onclick="sale_showhidden();">销售管理
+                <img align="right" class="pulldown" src="resource/pulldown.png" />
+            </dt>
+            <dd id="dd_block3">
+                <img id="dd_block3" class="second_level" src="resource/second_level.png" />
+                <a href="sale/sale_list.html" target="main" class="cks">销售记录管理</a>
+            </dd>
+            <dd id="dd_block4">
+                <img id="dd_block4" class="second_level" src="resource/second_level.png" />
+                <a href="sale/customer_list.html" target="main">客户信息管理</a>
+            </dd>
+        </dl>
+
+        <!-- 4.银行信息管理 -->
+        <dt>
+            <a href="bank/bank_list.html" target="main">银行信息管理</a>
+        </dt>
+
+        <!-- 5.统计 -->
+        <dt>
+            <a href="purchase/" target="main">统计</a>
+        </dt>
+    </div>
+</body>
+</html>

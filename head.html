@@ -1,0 +1,54 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>head</title>
+    <link rel="stylesheet" type="text/css" href="css/head.css" />
+    <style>
+        body{
+            background-size:100% 100%;
+            background: url(resource/tag.png) no-repeat fixed;
+            background-color: #2468A9;
+        }
+        .heading {
+            margin-top: 25px;
+            float: right;
+            margin-right: 12px;
+            border-radius: 30px;
+            white-space: nowrap;
+            position: relative;
+        }
+        .heading span {
+            display: inline-block;
+            padding-right: 10px;
+            line-height: 30px;
+            font-size: 14px;
+            color:white;
+            padding-left: 20px;
+            padding-left: 35px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function logout() {
+            parent.location.href="logout.do";
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="heading">
+        <span style="color: white;">
+            欢迎您，${adminName}！
+        </span>
+
+        <span>公司总资产：1亿</span>
+        
+        <a href="javascript:logout();">
+            <span>退出</span>
+        </a>
+    </div>
+</body>
+</html>

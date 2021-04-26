@@ -1,0 +1,109 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>登录</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .loginbody{
+            background: url(resource/loginbg.png) no-repeat;
+            background-size:100% 100%;
+        }
+
+        .loginbox {
+            width: 600px;
+            height: 320px;
+            background: url(resource/background.png) no-repeat;
+            background-size:100% 100%;
+            margin-top: 180px;
+            box-shadow: 10px 10px 5px #b6cad2
+        }
+        .loginuser {
+            width: 299px;
+            height: 48px;
+            background-color: #ecf5fa;
+            border: none;
+            line-height: 48px;
+            padding-left: 44px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .loginpwd {
+            width: 299px;
+            height: 48px;
+            background-color: #ecf5fa;
+            border: none;
+            line-height: 48px;
+            padding-left: 44px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .loginbtn {
+            width: 110px;
+            height: 35px;
+            line-height: 31px;
+            background-color: #3c96c8;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 30px;
+            margin-left: 25px;
+            border: 0px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        //判断是否输入用户名、密码
+        function login(){
+            var name= document.getElementById("name").value;
+            var password= document.getElementById("password").value;
+            if(name==''){
+                alert("请输入用户名！");
+                return;
+            }
+            if(password==''){
+                alert("请输入密码！");
+                return;
+            }
+            // document.getElementById("login_form").submit();
+
+            //跳转
+            window.location.href='home.html';
+        }
+    </script>
+</head>
+
+<body class="loginbody">
+    <form action="login.do" method="post">
+        <div align="center">
+            <div class="loginbox" align="center">
+                <table border="0" style="padding-top: 80px">
+                    <tr>
+                        <th>账号：</th>
+                        <th>
+                            <input type="text" id="name" name="name" class="loginuser" onclick="JavaScript:this.value=''"/>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>密码：</th>
+                        <th>
+                            <input type="password" id="password" name="password" class="loginpwd" onclick="JavaScript:this.value=''"/>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">
+                            <input type="button" class="loginbtn" onclick="login()" value="登录"/>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
