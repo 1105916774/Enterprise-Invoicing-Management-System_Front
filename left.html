@@ -24,7 +24,7 @@
         .left_box dt {
             background-color: #f9f9f9;
             color: #333;
-            font-size: 14px;
+            font-size: 15px;
             position: relative;
             line-height: 44px;
             border-bottom: 1px solid #dedede;
@@ -87,6 +87,17 @@
         　　if(dd_block4.style.display=='block') dd_block4.style.display='none';
         　　else dd_block4.style.display='block';
     　　}
+        function statistics_showhidden(){
+            var dd_block5=document.getElementById("dd_block5");
+            var dd_block6=document.getElementById("dd_block6");
+            var dd_block7=document.getElementById("dd_block7");
+            if(dd_block5.style.display=='block') dd_block5.style.display='none';
+            else dd_block5.style.display='block';
+            if(dd_block6.style.display=='block') dd_block6.style.display='none';
+            else dd_block6.style.display='block';
+            if(dd_block7.style.display=='block') dd_block7.style.display='none';
+            else dd_block7.style.display='block';
+    　　}
     </script>
 </head>
 
@@ -134,9 +145,23 @@
         </dt>
 
         <!-- 5.统计 -->
-        <dt>
-            <a href="purchase/" target="main">统计</a>
-        </dt>
+        <dl>
+            <dt onclick="statistics_showhidden();">统计
+                <img align="right" class="pulldown" src="resource/pulldown.png" />
+            </dt>
+            <dd id="dd_block5">
+                <img id="dd_block5" class="second_level" src="resource/second_level.png" />
+                <a href="statistics/profit_list.html" target="main">利润统计</a>
+            </dd>
+            <dd id="dd_block6">
+                <img id="dd_block6" class="second_level" src="resource/second_level.png" />
+                <a href="statistics/purchase_statistics.html" target="main">采购统计</a>
+            </dd>
+            <dd id="dd_block7">
+                <img id="dd_block7" class="second_level" src="resource/second_level.png" />
+                <a href="statistics/sale_statistics.html" target="main">销售统计</a>
+            </dd>
+        </dl>
     </div>
 </body>
 </html>
