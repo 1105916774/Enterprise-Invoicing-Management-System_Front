@@ -1,3 +1,4 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,39 +28,59 @@
 <body>
     <form class="layui-form form_div" action="" method="POST">
         <div class="layui-form-item" >
-            <label class="layui-form-label">开户人员</label>
+            <label class="layui-form-label">
+                <span style="color: red;">*</span> 开户人员</label>
             <div class="layui-input-block" style="width: 300px;">
-                <input type="text" name="name" disabled lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item" >
-            <label class="layui-form-label">银行账户</label>
+            <label class="layui-form-label">
+                <span style="color: red;">*</span> 银行账户</label>
             <div class="layui-input-block" style="width: 300px;">
-                <input type="text" name="bank_account" disabled lay-verify="number" autocomplete="off" class="layui-input">
+                <input type="text" name="bank_account" lay-verify="number" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item" >
-            <label class="layui-form-label">密码</label>
+            <label class="layui-form-label">
+                <span style="color: red;">*</span> 密码</label>
             <div class="layui-input-block" style="width: 300px;">
-                <input type="password" name="password" disabled lay-verify="number" autocomplete="off" class="layui-input">
+                <input type="password" name="password" lay-verify="number" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item" >
-            <label class="layui-form-label">现存金额</label>
+            <label class="layui-form-label">
+                <span style="color: red;">*</span> 现存金额</label>
             <div class="layui-input-block" style="width: 300px;">
-                <input type="text" name="money" disabled lay-verify="number" autocomplete="off" class="layui-input">
+                <input type="text" name="money" lay-verify="number" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button type="button" class="layui-btn">返回</button>
+                <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
       </form>
+       
+      <script>
+        //Demo
+        layui.use('form', function(){
+            var form = layui.form;
+            
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                // layer.closeAll(); //疯狂模式，关闭所有层？
+                return false;
+            });
+
+        });
+      </script>
        
 </body>
 </html>
